@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: fundraising-logic-service
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka/
+    fetch-registry: true
+    registerWithEureka: true
+  instance:
+    preferIpAddress: true
+server:
+  port: 21080
+
+infure:
+  node:
+    endpoint: https://ropsten.infura.io/v3/dc21916a7b7640a6b89e544fe348e5fd
+
+wallets:
+  dir: /home/burin17/proj/diploma/concept-funder/fundraising-logic-service/wallets
