@@ -63,4 +63,7 @@ public interface CrudServiceApiClient {
 
     @PostMapping("/payout-requests/approve")
     PayoutRequest approve(@RequestParam Long userId, @RequestParam Long prId, @RequestParam Long countOfApproves);
+
+    @GetMapping("/api/fundraising-projects/invested")
+    List<FundraisingProject> invested(@RequestParam Long investor);
 }

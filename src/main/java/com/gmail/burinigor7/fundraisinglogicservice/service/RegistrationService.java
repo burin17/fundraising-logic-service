@@ -29,7 +29,7 @@ public class RegistrationService {
     public ResponseEntity<?> register(RegistrationForm registrationForm) {
         Map<String, String> validationResults = validate(registrationForm);
         if (validationResults.isEmpty()) {
-            User newUser = createEthereumAccount(registrationForm);
+            User newUser = new User(registrationForm);
             newUser.setRole(Role.USER);
             return ResponseEntity.ok().body(crudServiceApiClient.createUser(newUser));
         }
@@ -38,18 +38,5 @@ public class RegistrationService {
 
     private Map<String, String> validate(RegistrationForm registrationForm) {
         return crudServiceApiClient.validate(registrationForm);
-    }
-
-    private User createEthereumAccount(RegistrationForm registrationForm) {
-        try {
-            String walletName = WalletUtils.generateNewWalletFile(registrationForm.getPassword(), new File(walletsDir));
-            Credentials credentials = WalletUtils.loadCredentials(registrationForm.getPassword(), walletsDir + "/" + walletName);
-            User user = new User(registrationForm);
-            user.setWalletName(walletName);
-            return user;
-        }
-        catch (Exception e) {
-                throw new RuntimeException(e);
-        }
     }
 }

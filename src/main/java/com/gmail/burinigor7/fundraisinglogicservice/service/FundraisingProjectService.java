@@ -86,4 +86,14 @@ public class FundraisingProjectService {
         crudServiceApiClient.updateFundraisingProject(fundraisingProject);
         return fundraisingProject;
     }
+
+    public FundraisingProject changeFundraisingProjectStatusToExpired(Long fpId) {
+        FundraisingProject fundraisingProject = crudServiceApiClient.getFundraisingProjectById(fpId);
+        fundraisingProject.setStatus(FundraisingProjectStatus.EXPIRED);
+        return crudServiceApiClient.updateFundraisingProject(fundraisingProject);
+    }
+
+    public List<FundraisingProject> getInvestedFundraisingProjects(String username) {
+        return crudServiceApiClient.invested(crudServiceApiClient.getUserByUsername(username).getId());
+    }
 }

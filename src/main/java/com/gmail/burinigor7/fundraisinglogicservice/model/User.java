@@ -13,7 +13,6 @@ public class User {
     private String username;
     private String password;
     private List<FundraisingProject> fundraisingProjects;
-    private String walletName;
     private Role role;
     private List<Investment> investments;
     private List<PayoutRequest> approvedPayoutRequest;
@@ -49,17 +48,10 @@ public class User {
         this.email = registrationForm.getEmail();
         this.username = registrationForm.getUsername();
         this.email = registrationForm.getEmail();
+        this.patronymic = registrationForm.getPatronymic();
     }
 
     public User() {
-    }
-
-    public String getWalletName() {
-        return walletName;
-    }
-
-    public void setWalletName(String walletName) {
-        this.walletName = walletName;
     }
 
     public Long getId() {

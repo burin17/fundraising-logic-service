@@ -83,4 +83,14 @@ public class FundraisingProjectController {
     public FundraisingProject updateCurrentBalance(@RequestParam Long id, @RequestParam Float currentBalance) {
         return fundraisingProjectService.updateCurrentBalance(id, currentBalance);
     }
+
+    @PostMapping("/expired")
+    public FundraisingProject changeFundraisingProjectStatusToExpired(@RequestParam Long fpId) {
+        return fundraisingProjectService.changeFundraisingProjectStatusToExpired(fpId);
+    }
+
+    @GetMapping("/invested")
+    public List<FundraisingProject> getInvestedFundraisingProjects(@RequestParam String username) {
+        return fundraisingProjectService.getInvestedFundraisingProjects(username);
+    }
 }
