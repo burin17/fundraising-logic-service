@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -92,5 +93,20 @@ public class FundraisingProjectController {
     @GetMapping("/invested")
     public List<FundraisingProject> getInvestedFundraisingProjects(@RequestParam String username) {
         return fundraisingProjectService.getInvestedFundraisingProjects(username);
+    }
+
+    @GetMapping("/tags/{projectId}")
+    public List<String> getTagsForProject(@PathVariable Long projectId) {
+        return fundraisingProjectService.getTags(projectId);
+    }
+
+    @GetMapping("/search/{titlePiece}")
+    public List<FundraisingProject> search(@PathVariable String titlePiece, @RequestParam String[] tags) {
+        return fundraisingProjectService.search(titlePiece, tags);
+    }
+
+    @GetMapping("/search-by-tags")
+    public List<FundraisingProject> search(@RequestParam String[] tags) {
+        return fundraisingProjectService.search(tags);
     }
 }

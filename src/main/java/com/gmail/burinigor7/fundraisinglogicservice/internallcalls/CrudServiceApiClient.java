@@ -4,6 +4,7 @@ import com.gmail.burinigor7.fundraisinglogicservice.dto.RegistrationForm;
 import com.gmail.burinigor7.fundraisinglogicservice.model.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -43,10 +44,10 @@ public interface CrudServiceApiClient {
     @PutMapping("/api/fundraising-projects")
     FundraisingProject updateFundraisingProject(@RequestBody FundraisingProject fundraisingProject);
 
-    @PostMapping("/payout-requests")
+    @PostMapping("/api/payout-requests")
     PayoutRequest createPayoutRequest(@RequestBody PayoutRequest payoutRequest);
 
-    @GetMapping("/payout-requests/{fundraisingProjectId}")
+    @GetMapping("/api/payout-requests/{fundraisingProjectId}")
     List<PayoutRequest> payoutRequestByFundraisingProject(@PathVariable Long fundraisingProjectId);
 
     @GetMapping("/api/users/{userId}")
@@ -55,15 +56,30 @@ public interface CrudServiceApiClient {
     @PostMapping("/api/investments")
     Investment createInvestment(@RequestBody Investment investment);
 
-    @GetMapping("/payout-requests")
+    @GetMapping("/api/payout-requests")
     PayoutRequest payoutRequest(@RequestParam Long id);
 
     @GetMapping("/api/investments")
     List<Investment> getInvestments(@RequestParam Long fpId);
 
-    @PostMapping("/payout-requests/approve")
-    PayoutRequest approve(@RequestParam Long userId, @RequestParam Long prId, @RequestParam Long countOfApproves);
+    @PostMapping("/api/payout-requests/approve")
+    PayoutRequest approve(@RequestParam Long userId, @RequestParam Long prId, @RequestParam Integer countOfApproves);
 
     @GetMapping("/api/fundraising-projects/invested")
     List<FundraisingProject> invested(@RequestParam Long investor);
+
+    @GetMapping("/api/fundraising-projects/tags/{projId}")
+    List<String> getTags(@PathVariable Long projId);
+
+    @GetMapping("/api/fundraising-projects/search/{titlePiece}")
+    List<FundraisingProject> search(@PathVariable String titlePiece, @RequestParam String[] tags);
+
+    @GetMapping("/api/fundraising-projects/search-by-tags")
+    List<FundraisingProject> search(@RequestParam String[] tags);
+
+    @GetMapping("/api/users/piece")
+    List<User> usersByPieceOfUsername(@RequestParam String usernamePiece);
+
+    @GetMapping ("/api/investments/user/{userId}")
+    List<Investment> getInvestmentsForUser(@PathVariable Long userId);
 }

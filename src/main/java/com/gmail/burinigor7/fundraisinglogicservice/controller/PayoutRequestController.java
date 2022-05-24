@@ -30,7 +30,7 @@ public class PayoutRequestController {
 
     @PostMapping("/approve")
     public PayoutRequest approvePayoutRequest(@RequestParam Long payoutRequestId, @RequestParam Long approverId,
-                                              @RequestParam Long countOfApproves) {
+                                              @RequestParam Integer countOfApproves) {
         return payoutRequestService.approvePayoutRequest(payoutRequestId, approverId, countOfApproves);
     }
 

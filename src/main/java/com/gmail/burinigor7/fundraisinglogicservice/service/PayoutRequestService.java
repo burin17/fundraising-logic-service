@@ -8,6 +8,8 @@ import com.gmail.burinigor7.fundraisinglogicservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -43,8 +45,7 @@ public class PayoutRequestService {
         return crudServiceApiClient.payoutRequestByFundraisingProject(fundraisingProjectId);
     }
 
-    // todo: set current count of approves
-    public PayoutRequest approvePayoutRequest(Long payoutRequestId, Long approverId, Long countOfApproves) {
+    public PayoutRequest approvePayoutRequest(Long payoutRequestId, Long approverId, Integer countOfApproves) {
         PayoutRequest payoutRequest = crudServiceApiClient.payoutRequest(payoutRequestId);
         FundraisingProject fundraisingProject = payoutRequest.getFundraisingProject();
         List<Investment> investments = crudServiceApiClient.getInvestments(fundraisingProject.getFundraisingProjectId());

@@ -8,6 +8,8 @@ public class FundraisingProject {
     private Long fundraisingProjectId;
     private String title;
     private String description;
+    private String story;
+    private String moderationNotes;
     private User founder;
     private FundraisingProjectStatus status;
     private Integer days;
@@ -16,6 +18,39 @@ public class FundraisingProject {
     private String contractAddress;
     private Float currentAmount;
     private List<Investment> investments;
+    private List<String> youtubeLinks;
+    private List<String> tags;
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+    public List<String> getYoutubeLinks() {
+        return youtubeLinks;
+    }
+
+    public void setYoutubeLinks(List<String> youtubeLinks) {
+        this.youtubeLinks = youtubeLinks;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
+    public String getModerationNotes() {
+        return moderationNotes;
+    }
+
+    public void setModerationNotes(String moderationNotes) {
+        this.moderationNotes = moderationNotes;
+    }
 
     public List<Investment> getInvestments() {
         return investments;

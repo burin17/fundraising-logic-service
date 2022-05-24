@@ -17,6 +17,15 @@ public class PayoutRequest {
     private List<User> approvers;
     private Integer requiredAmountOfApproves;
     private Long countOfApproves;
+    private String reportNotes;
+
+    public String getReportNotes() {
+        return reportNotes;
+    }
+
+    public void setReportNotes(String reportNotes) {
+        this.reportNotes = reportNotes;
+    }
 
     public Long getCountOfApproves() {
         return countOfApproves;

@@ -96,4 +96,18 @@ public class FundraisingProjectService {
     public List<FundraisingProject> getInvestedFundraisingProjects(String username) {
         return crudServiceApiClient.invested(crudServiceApiClient.getUserByUsername(username).getId());
     }
+
+    public List<String> getTags(Long projectId) {
+        return crudServiceApiClient.getTags(projectId);
+    }
+
+    public List<FundraisingProject> search(String titlePiece, String[] tags) {
+        return crudServiceApiClient.search(titlePiece, tags);
+    }
+
+    public List<FundraisingProject> search(String[] tags) {
+        return crudServiceApiClient.search(tags);
+    }
+
+
 }
