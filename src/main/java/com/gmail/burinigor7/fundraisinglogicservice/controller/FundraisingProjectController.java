@@ -2,6 +2,8 @@ package com.gmail.burinigor7.fundraisinglogicservice.controller;
 
 import com.gmail.burinigor7.fundraisinglogicservice.model.FundraisingProject;
 import com.gmail.burinigor7.fundraisinglogicservice.model.FundraisingProjectStatus;
+import com.gmail.burinigor7.fundraisinglogicservice.model.Investment;
+import com.gmail.burinigor7.fundraisinglogicservice.model.User;
 import com.gmail.burinigor7.fundraisinglogicservice.service.FundraisingProjectService;
 import com.gmail.burinigor7.fundraisinglogicservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,8 +78,9 @@ public class FundraisingProjectController {
 
     @PostMapping("/invest")
     public FundraisingProject invest(@RequestParam Long id, @RequestParam Float currentAmount,
-                                     @RequestParam Float ethAmount, @RequestParam Long investor) {
-        return fundraisingProjectService.invest(id, currentAmount, ethAmount, investor);
+                                     @RequestParam Float ethAmount, @RequestParam Long investor,
+                                     @RequestParam String from) {
+        return fundraisingProjectService.invest(id, currentAmount, ethAmount, investor, from);
     }
 
     @PostMapping("/updateCurrentBalance")
@@ -108,5 +111,10 @@ public class FundraisingProjectController {
     @GetMapping("/search-by-tags")
     public List<FundraisingProject> search(@RequestParam String[] tags) {
         return fundraisingProjectService.search(tags);
+    }
+
+    @GetMapping("/investments/{fpId}")
+    public List<Investment> investors(@PathVariable Long fpId) {
+        return userService.investors(fpId);
     }
 }

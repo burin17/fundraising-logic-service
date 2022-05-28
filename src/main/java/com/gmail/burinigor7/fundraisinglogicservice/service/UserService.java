@@ -32,4 +32,8 @@ public class UserService {
     public List<Investment> investments(Long userId) {
         return crudServiceApiClient.getInvestmentsForUser(userId);
     }
+
+    public List<Investment> investors(Long fpId) {
+        return crudServiceApiClient.getInvestments(fpId);
+    }
 }

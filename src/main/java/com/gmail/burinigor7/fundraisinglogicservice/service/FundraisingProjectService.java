@@ -65,13 +65,15 @@ public class FundraisingProjectService {
         return fundraisingProject;
     }
 
-    public FundraisingProject invest(Long id, Float currentAmount, Float ethAmount, Long investor) {
+    public FundraisingProject invest(Long id, Float currentAmount, Float ethAmount, Long investor,
+                                     String from) {
         FundraisingProject fundraisingProject = crudServiceApiClient.getFundraisingProjectById(id);
         fundraisingProject.setCurrentAmount(currentAmount);
         Investment investment = new Investment();
         investment.setInvestor(crudServiceApiClient.user(investor));
         investment.setFundraisingProject(fundraisingProject);
         investment.setEthAmount(ethAmount);
+        investment.setFromEthereumAddress(from);
         crudServiceApiClient.createInvestment(investment);
         if(currentAmount >= fundraisingProject.getAmountGoal()) {
             fundraisingProject.setStatus(FundraisingProjectStatus.FINANCED);

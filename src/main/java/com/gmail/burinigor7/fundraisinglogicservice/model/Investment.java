@@ -9,6 +9,16 @@ public class Investment {
 
     private Float ethAmount;
 
+    private String fromEthereumAddress;
+
+    public String getFromEthereumAddress() {
+        return fromEthereumAddress;
+    }
+
+    public void setFromEthereumAddress(String fromEthereumAddress) {
+        this.fromEthereumAddress = fromEthereumAddress;
+    }
+
     public Float getEthAmount() {
         return ethAmount;
     }
